@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnIZHki - Найди свой жанр! Тест и лучшие книги всех жанров</title>
+    <meta name="description" content="Пройди тест и найди свой жанр! Фантастика, детективы, романтика, ужасы, триллеры, психология, фэнтези. Лучшие книги с обложками и описаниями.">
+    <meta name="keywords" content="книги, жанры книг, тест жанров, литература">
+    <link rel="canonical" href="https://bookgenres.ru/">
+    <link rel="shortcut icon" href="img/icon.webp">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Georgia', serif; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
+            min-height: 100vh; 
+            color: #2c3e50; 
+            line-height: 1.6;
+        }
+        header { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        nav { 
+            position: relative;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .logo { 
+            font-size: 2rem; 
+            color: #34495e; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .genres-btn { 
+            background: #3498db; 
+            color: white; 
+            border: none; 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 25px; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            font-weight: 500;
+            line-height: 1.2;
+            transition: all 0.3s; 
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.6rem; /* Фиксированная высота для всех кнопок */
+            white-space: nowrap;
+        }
+        .genres-btn:hover { 
+            background: #2980b9; 
+        }
+        /* Специально для кнопки Жанры - убираем дефолтные стили button */
+        .genres-btn[type="button"] {
+            appearance: none;
+            -webkit-appearance: none;
+            font-family: inherit;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 5px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #34495e;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        .genres-dropdown { 
+            position: absolute; 
+            top: 100%; 
+            right: 0; 
+            background: rgba(255,255,255,0.98); 
+            min-width: 220px; 
+            border-radius: 10px; 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(-10px); 
+            transition: all 0.3s; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            flex-direction: column;
+        }
+        .genres-dropdown.active { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0); 
+        }
+        .genres-dropdown a { 
+            display: block; 
+            padding: 1rem; 
+            color: #2c3e50; 
+            text-decoration: none; 
+            border-bottom: 1px solid #ecf0f1; 
+            transition: background 0.3s; 
+            font-weight: 500;
+        }
+        .genres-dropdown a:hover { 
+            background: #3498db; 
+            color: white; 
+        }
+        .hero { 
+            text-align: center; 
+            padding: 4rem 2rem; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        h1 { 
+            font-size: 3.5rem; 
+            background: linear-gradient(135deg, #2c3e50, #34495e); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem; 
+            animation: fadeInUp 1s ease; 
+        }
+        .quiz-btn { 
+            background: linear-gradient(135deg, #3498db, #2980b9); 
+            border: none; 
+            padding: 1.2rem 3rem; 
+            border-radius: 50px; 
+            font-size: 1.3rem; 
+            cursor: pointer; 
+            margin: 2rem 0; 
+            color: white;
+            transition: all 0.3s; 
+            box-shadow: 0 10px 30px rgba(52,152,219,0.3); 
+        }
+        .quiz-btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 40px rgba(52,152,219,0.4); 
+        }
+        .quiz-container { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(20px); 
+            border-radius: 20px; 
+            padding: 2.5rem; 
+            margin: 2rem auto; 
+            max-width: 600px; 
+            display: none; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s ease; 
+        }
+        .question { 
+            font-size: 1.4rem; 
+            margin-bottom: 1.5rem; 
+            text-align: center; 
+            color: #2c3e50;
+        }
+        .options { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+        }
+        .option { 
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7); 
+            padding: 1.2rem; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            text-align: center; 
+            font-weight: 500; 
+            border: 2px solid transparent;
+        }
+        .option:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15); 
+            border-color: #3498db;
+        }
+        .result { 
+            text-align: center; 
+            padding: 3rem; 
+            background: linear-gradient(135deg, #fff, #f8f9fa); 
+            border-radius: 25px; 
+            display: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .result h2 { 
+            font-size: 2.8rem; 
+            margin-bottom: 1rem; 
+            background: linear-gradient(135deg, #27ae60, #2ecc71); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .genres-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 1.5rem; 
+            padding: 3rem 2rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .genre-card { 
+            background: rgba(255,255,255,0.9); 
+            border-radius: 20px; 
+            padding: 2rem; 
+            text-align: center; 
+            text-decoration: none; 
+            color: inherit;
+            transition: all 0.4s; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .genre-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2); 
+        }
+        .genre-emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .genre-title { font-size: 1.5rem; font-weight: bold; color: #2c3e50; margin-bottom: 0.5rem; }
+        footer { 
+            background: rgba(44,62,80,0.9); 
+            color: white; 
+            text-align: center; 
+            padding: 2.5rem; 
+            margin-top: 4rem; 
+        }
+        .footer-links a { color: #3498db; text-decoration: none; }
+        .footer-links a:hover { text-decoration: underline; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Адаптивность для планшетов и телефонов */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 0.5rem;
+            }
+            .genres-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.95rem;
+                height: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) { 
+            header {
+                padding: 0.8rem 1.5rem;
+            }
+            .logo {
+                font-size: 1.6rem;
+            }
+            h1 { 
+                font-size: 2.5rem; 
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255,255,255,0.98);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                gap: 0.5rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .genres-dropdown { 
+                right: auto; 
+                left: 0; 
+                width: 100%; 
+                min-width: auto;
+                border-radius: 0;
+            }
+            .hero {
+                padding: 2rem 1rem;
+            }
+            .quiz-container {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.7rem 1rem;
+            }
+            .logo {
+                font-size: 1.4rem;
+            }
+            h1 { 
+                font-size: 2rem; 
+            }
+            .genres-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                height: 2.2rem;
+            }
+            .hero {
+                padding: 1.5rem 1rem;
+            }
+            .quiz-btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+        
+        a { text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">📚 KnIZHki</a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="genres-btn">Главная</a>
+                <a href="about.html" class="genres-btn">ℹ️ О сайте</a>
+                <a href="benefits.html" class="genres-btn">📖 В чем польза книг</a>
+                <button class="genres-btn" onclick="toggleGenres()">Жанры ▼</button>
+            </div>
+            
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="genres-dropdown" id="genresDropdown">
+                <a href="detective.html">🔍 Детективы</a>
+                <a href="romance.html">💕 Романтика</a>
+                <a href="horror.html">👻 Ужасы</a>
+                <a href="thriller.html">⚡ Триллеры</a>
+                <a href="psychology.html">🧠 Психология</a>
+                <a href="fantasy.html">✨ Фэнтези</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Остальной контент остается без изменений -->
+    <section class="hero">
+        <h1>Открой жанр своей мечты!</h1>
+        <p style="font-size: 1.3rem; color: #5a6c7d; margin-bottom: 2rem;">Пройди мини-тест из 2 вопросов и узнай, какие книги зажгут твое воображение!</p>
+        <button class="quiz-btn" onclick="startQuiz()">Начать тест ➡️</button>
+        
+        <div class="quiz-container" id="quizContainer">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+        </div>
+        
+        <div class="result" id="result">
+            <h2 id="resultTitle"></h2>
+            <p id="resultDesc" style="font-size: 1.2rem; color: #5a6c7d; margin-bottom: 2rem;"></p>
+            <a id="resultLink" href="#" class="quiz-btn">Читать книги этого жанра ➡️</a>
+        </div>
+    </section>
+
+    <section>
+        <h2 style="text-align: center; font-size: 2.5rem; color: #2c3e50; margin: 3rem 0 2rem;">Популярные жанры</h2>
+        <div class="genres-grid">
+            <a href="detective.html" class="genre-card">
+                <div class="genre-emoji">🔍</div>
+                <div class="genre-title">Детективы</div>
+                <div>Загадки, интриги и гениальные расследования</div>
+            </a>
+            <a href="romance.html" class="genre-card">
+                <div class="genre-emoji">💕</div>
+                <div class="genre-title">Романтика</div>
+                <div>Любовь, страсть и счастливые концовки</div>
+            </a>
+            <a href="horror.html" class="genre-card">
+                <div class="genre-emoji">👻</div>
+                <div class="genre-title">Ужасы</div>
+                <div>Страх, мистика и ночные кошмары</div>
+            </a>
+            <a href="thriller.html" class="genre-card">
+                <div class="genre-emoji">⚡</div>
+                <div class="genre-title">Триллеры</div>
+                <div>Напряжение, погоня и неожиданные повороты</div>
+            </a>
+            <a href="psychology.html" class="genre-card">
+                <div class="genre-emoji">🧠</div>
+                <div class="genre-title">Психология</div>
+                <div>Раскрытие тайн человеческой души</div>
+            </a>
+            <a href="fantasy.html" class="genre-card">
+                <div class="genre-emoji">✨</div>
+                <div class="genre-title">Фэнтези</div>
+                <div>Магия, драконы и волшебные миры</div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 BookGenres.ru. Все права защищены. 
+        </p>
+        <p>Создано с ❤️ для любителей книг</p>
+    </footer>
+
+    <script>
+        let currentQuestion = 0;
+        const quizData = [
+            {
+                question: "Какой твой идеальный вечер?",
+                options: [
+                    { text: "Исследовать магический мир с драконами", genre: "fantasy", score: 3 },
+                    { text: "Расследовать сложное преступление", genre: "detective", score: 3 },
+                    { text: "Романтический ужин при свечах", genre: "romance", score: 3 },
+                    { text: "Смотреть ужастик в темноте", genre: "horror", score: 3 },
+                    { text: "Читать психологический триллер", genre: "psychology", score: 3 }
+                ]
+            },
+            {
+                question: "Что тебя больше всего вдохновляет?",
+                options: [
+                    { text: "Магия и волшебство", genre: "fantasy", score: 3 },
+                    { text: "Логика и загадки", genre: "detective", score: 3 },
+                    { text: "Глубокие чувства", genre: "romance", score: 3 },
+                    { text: "Страх и адреналин", genre: "horror", score: 3 },
+                    { text: "Сложность человеческой психики", genre: "psychology", score: 3 }
+                ]
+            }
+        ];
+        let scores = { fantasy: 0, detective: 0, romance: 0, horror: 0, psychology: 0, thriller: 0 };
+
+        function toggleGenres() {
+            document.getElementById('genresDropdown').classList.toggle('active');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+
+        function startQuiz() {
+            document.getElementById('quizContainer').style.display = 'block';
+            document.querySelector('.quiz-btn').style.display = 'none';
+            currentQuestion = 0;
+            Object.keys(scores).forEach(key => scores[key] = 0);
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById('question').textContent = q.question;
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+            q.options.forEach(option => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                btn.textContent = option.text;
+                btn.onclick = () => selectOption(option);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function selectOption(option) {
+            scores[option.genre] += option.score;
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quizContainer').style.display = 'none';
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            
+            let topGenre = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            
+            const results = {
+                fantasy: { title: '✨ ФЭНТЕЗИ!', desc: 'Магия, драконы и эпические приключения ждут тебя!', link: 'fantasy.html' },
+                detective: { title: '🔍 ДЕТЕКТИВ!', desc: 'Загадки и интриги - твой стиль!', link: 'detective.html' },
+                romance: { title: '💕 РОМАНТИКА!', desc: 'Любовь и страсть - твоя стихия!', link: 'romance.html' },
+                horror: { title: '👻 УЖАСЫ!', desc: 'Страх и мистика захватят тебя!', link: 'horror.html' },
+                psychology: { title: '🧠 ПСИХОЛОГИЯ!', desc: 'Погрузись в тайны человеческой души!', link: 'psychology.html' },
+                thriller: { title: '⚡ ТРИЛЛЕР!', desc: 'Напряжение и адреналин - твой выбор!', link: 'thriller.html' }
+            };
+            
+            const res = results[topGenre] || results.fantasy;
+            document.getElementById('resultTitle').textContent = res.title;
+            document.getElementById('resultDesc').textContent = res.desc;
+            document.getElementById('resultLink').href = res.link;
+        }
+
+        document.addEventListener('click', (e) => {
+            const dropdown = document.getElementById('genresDropdown');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!e.target.closest('.genres-btn') && !e.target.closest('#genresDropdown')) {
+                dropdown.classList.remove('active');
+            }
+            
+            if (!e.target.closest('.hamburger') && !e.target.closest('.nav-links')) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

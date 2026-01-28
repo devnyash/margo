@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>🧠 Психология - Лучшие книги жанра | KnIZHki</title>
+<meta name="description" content="Лучшие книги по психологии: самопознание, отношения, мотивация, развитие личности. Обложки, авторы, описания книг для развития." />
+<meta name="keywords" content="психология книги, книги психология, саморазвитие, личностный рост, мотивация" />
+<link rel="shortcut icon" href="img/icon.webp">
+<style>
+/* БАЗОВЫЕ СТИЛИ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+header {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.logo {
+    font-size: 2rem;
+    color: #34495e;
+    text-decoration: none;
+    font-weight: bold;
+}
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.genres-btn { 
+    background: #3498db; 
+    color: white; 
+    border: none; 
+    padding: 0.8rem 1.5rem; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-size: 1rem; 
+    font-weight: 500;
+    line-height: 1.2;
+    transition: all 0.3s; 
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.6rem; /* фиксированная высота */
+    white-space: nowrap;
+    user-select: none;
+}
+/* убираем дефолтные стили у кнопки */
+.genres-btn[type="button"] {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: inherit;
+}
+.genres-btn:hover {
+    background: #2980b9;
+}
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    padding: 5px;
+}
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #34495e;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+.genres-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(255,255,255,0.98);
+    min-width: 220px;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    flex-direction: column;
+}
+.genres-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.genres-dropdown a {
+    display: block;
+    padding: 1rem;
+    color: #2c3e50;
+    text-decoration: none;
+    border-bottom: 1px solid #ecf0f1;
+    transition: background 0.3s;
+    font-weight: 500;
+}
+.genres-dropdown a:hover {
+    background: #3498db;
+    color: white;
+}
+
+/* ОСНОВНЫЕ СТИЛИ - СИНИЕ/ФИОЛЕТОВЫЕ ОТТЕНКИ */
+body {
+    font-family: 'Georgia', serif;
+    background: #f0f8ff;
+    min-height: 100vh;
+    color: #2c3e50;
+    margin: 0;
+}
+.genre-hero {
+    background: #3b82f6;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+.genre-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    font-weight: bold;
+}
+.genre-hero p {
+    font-size: 1.4rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.genre-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto 4rem auto;
+}
+.book-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s;
+    box-shadow: 0 10px 40px rgba(59,130,246,0.25);
+    cursor: pointer;
+    border: 1px solid rgba(59,130,246,0.4);
+}
+.book-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(59,130,246,0.35);
+}
+.book-cover {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+.book-info {
+    padding: 1.5rem;
+}
+.book-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #3b82f6;
+    line-height: 1.3;
+}
+.book-author {
+    color: #1d4ed8;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+.book-desc {
+    line-height: 1.6;
+    color: #1e40af;
+    font-size: 0.95rem;
+}
+footer {
+    background: rgba(59,130,246,0.9);
+    color: white;
+    text-align: center;
+    padding: 2.5rem;
+    margin-top: 4rem;
+}
+footer a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* АДАПТИВНОСТЬ ШАПКИ */
+@media (max-width: 1024px) {
+    .nav-links { gap: 0.5rem; }
+    .genres-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+        height: 2.4rem;
+    }
+}
+@media (max-width: 768px) {
+    header { padding: 0.8rem 1.5rem; }
+    .logo { font-size: 1.6rem; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.98);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        gap: 0.5rem;
+    }
+    .nav-links.active { display: flex; }
+    .hamburger { display: flex; }
+    .genres-dropdown { 
+        right: auto; 
+        left: 0; 
+        width: 100%; 
+        min-width: auto;
+        border-radius: 0;
+    }
+    .genre-hero { padding: 2.5rem 1rem; }
+    .genre-hero h1 { font-size: 2.5rem; }
+    .genre-hero p { font-size: 1.2rem; }
+    .genre-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem 1rem;
+    }
+}
+@media (max-width: 480px) {
+    header { padding: 0.7rem 1rem; }
+    .logo { font-size: 1.4rem; }
+    .genres-btn { 
+        padding: 0.6rem 1rem; 
+        font-size: 0.9rem; 
+        height: 2.2rem;
+    }
+    .genre-hero { padding: 2rem 1rem; }
+    .genre-hero h1 { font-size: 2rem; }
+    .genre-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+    .book-cover { height: 300px; }
+}
+</style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="index.html" class="logo">📚 KnIZHki</a>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="genres-btn">Главная</a>
+            <a href="about.html" class="genres-btn">ℹ️ О сайте</a>
+            <a href="benefits.html" class="genres-btn">📖 В чем польза книг</a>
+            <button class="genres-btn" onclick="toggleGenres()">Жанры ▼</button>
+        </div>
+        
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="genres-dropdown" id="genresDropdown">
+            <a href="detective.html">🔍 Детективы</a>
+            <a href="romance.html">💕 Романтика</a>
+            <a href="horror.html">👻 Ужасы</a>
+            <a href="thriller.html">⚡ Триллеры</a>
+            <a href="psychology.html">🧠 Психология</a>
+            <a href="fantasy.html">✨ Фэнтези</a>
+        </div>
+    </nav>
+</header>
+
+<section class="genre-hero">
+    <h1>🧠 Психология</h1>
+    <p>Понимание себя, отношений и мира. Книги для развития личности, мотивации и самопознания.</p>
+</section>
+
+<section class="genre-grid">
+    <div class="book-card">
+        <img src="img/7_habits.webp" alt="7 навыков" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">7 навыков высокоэффективных людей</div>
+            <div class="book-author">Стивен Кови</div>
+            <div class="book-desc">Принципы личной и профессиональной эффективности для достижения целей.</div>
+        </div>
+    </div>
+    <div class="book-card">
+        <img src="img/atomic_habits.webp" alt="Атомные привычки" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">Атомные привычки</div>
+            <div class="book-author">Джеймс Клир</div>
+            <div class="book-desc">Маленькие изменения для значительных результатов в жизни.</div>
+        </div>
+    </div>
+    <div class="book-card">
+        <img src="img/man_search_meaning.webp" alt="Человек в поисках смысла" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">Человек в поисках смысла</div>
+            <div class="book-author">Виктор Франкл</div>
+            <div class="book-desc">Опыт психотерапевта в концлагере и открытие логотерапии.</div>
+        </div>
+    </div>
+    <div class="book-card">
+        <img src="img/emotional_intelligence.webp" alt="Эмоциональный интеллект" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">Эмоциональный интеллект</div>
+            <div class="book-author">Дэниел Гоулман</div>
+            <div class="book-desc">Почему EQ важнее IQ для успеха в жизни и карьере.</div>
+        </div>
+    </div>
+    <div class="book-card">
+        <img src="img/power_of_habit.webp" alt="Сила привычки" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">Сила привычки</div>
+            <div class="book-author">Чарльз Дахигг</div>
+            <div class="book-desc">Как привычки формируют жизнь бизнеса, общества и людей.</div>
+        </div>
+    </div>
+    <div class="book-card">
+        <img src="img/thinking_fast_slow.webp" alt="Думай медленно... решай быстро" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">Думай медленно... решай быстро</div>
+            <div class="book-author">Даниэль Канеман</div>
+            <div class="book-desc">Две системы мышления и когнитивные искажения.</div>
+        </div>
+    </div>
+    <div class="book-card">
+        <img src="img/influence.webp" alt="Психология влияния" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">Психология влияния</div>
+            <div class="book-author">Роберт Чалдини</div>
+            <div class="book-desc">6 принципов убеждения и манипуляции людьми.</div>
+        </div>
+    </div>
+    <div class="book-card">
+        <img src="img/flow.webp" alt="Поток" class="book-cover" />
+        <div class="book-info">
+            <div class="book-title">Поток</div>
+            <div class="book-author">Михай Чиксентмихайи</div>
+            <div class="book-desc">Психология оптимального опыта и счастья.</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 BookGenres.ru. Все права защищены.</p>
+    <p>Создано с ❤️ для любителей книг</p>
+</footer>
+
+<script>
+function toggleGenres() {
+    document.getElementById('genresDropdown').classList.toggle('active');
+}
+
+function toggleMobileMenu() {
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
+document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('genresDropdown');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (!e.target.closest('.genres-btn') && !e.target.closest('#genresDropdown')) {
+        dropdown.classList.remove('active');
+    }
+    
+    if (!e.target.closest('.hamburger') && !e.target.closest('.nav-links')) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+</script>
+</body>
+</html>

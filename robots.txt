@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /*.txt$
+Disallow: /img/
+Disallow: /admin/
+Disallow: /*.log$
+Disallow: /_vti_*
+
+# Yandex
+User-agent: Yandex
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+Host: bookgenres.ru
+Sitemap: https://bookgenres.ru/sitemap.xml
+
