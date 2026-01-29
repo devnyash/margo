@@ -7,8 +7,8 @@
 <meta name="description" content="Лучшие книги ужасов: призраки, монстры, психологический хоррор. Обложки, авторы, описания страшных книг, от которых мурашки по коже." />
 <meta name="keywords" content="ужасы книги, хоррор книги, страшные книги, книги ужасов, степhen king" />
 <link rel="shortcut icon" href="img/icon.webp">
+<link rel="stylesheet" href="styles/style.css">
 <style>
-/* БАЗОВЫЕ СТИЛИ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 header {
@@ -54,11 +54,10 @@ nav {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 2.6rem; /* фиксированная высота */
+    height: 2.6rem; 
     white-space: nowrap;
     user-select: none;
 }
-/* убираем дефолтные стили у кнопки */
 .genres-btn[type="button"] {
     appearance: none;
     -webkit-appearance: none;
@@ -123,7 +122,6 @@ nav {
     color: white;
 }
 
-/* ОСНОВНЫЕ СТИЛИ - КРАСНЫЕ ОТТЕНКИ */
 body {
     font-family: 'Georgia', serif;
     background: #fee2e2;
@@ -209,8 +207,13 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+.cta-button {
+    background-color: rgba(220,38,38,0.9) !important;
+}
+.cta-button:hover {
+    background-color: #991b1b !important;
+}
 
-/* АДАПТИВНОСТЬ ШАПКИ */
 @media (max-width: 1024px) {
     .nav-links { gap: 0.5rem; }
     .genres-btn {
@@ -244,7 +247,6 @@ footer a:hover {
         min-width: auto;
         border-radius: 0;
     }
-    /* Контент */
     .genre-hero { padding: 2.5rem 1rem; }
     .genre-hero h1 { font-size: 2.5rem; }
     .genre-hero p { font-size: 1.2rem; }
@@ -371,6 +373,12 @@ footer a:hover {
         </div>
     </div>
 </section>
+
+<div class="cta-container">
+    <h1>Откройте для себя мир книг!</h1>
+    <p>Присоединяйтесь к нашему сообществу книголюбов и получайте рекомендации, рецензии и новости о лучших книгах!</p>
+    <a href="#subscribe" class="cta-button">Перейти в группу</a>
+</div>
 
 <footer>
     <p>&copy; 2026 BookGenres.ru. Все права защищены.</p>

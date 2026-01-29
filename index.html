@@ -19,7 +19,6 @@
         ym(106505597, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href,  accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/106505597" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -72,13 +71,12 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 2.6rem; /* Фиксированная высота для всех кнопок */
+            height: 2.6rem; 
             white-space: nowrap;
         }
         .genres-btn:hover { 
             background: #2980b9; 
         }
-        /* Специально для кнопки Жанры - убираем дефолтные стили button */
         .genres-btn[type="button"] {
             appearance: none;
             -webkit-appearance: none;
@@ -135,10 +133,14 @@
             padding: 4rem 2rem; 
             max-width: 800px; 
             margin: 0 auto; 
+            background-color: white;
+            border-radius: 10px;
+            transform: translateY(40px);
         }
         h1 { 
             font-size: 3.5rem; 
             background: linear-gradient(135deg, #2c3e50, #34495e); 
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem; 
@@ -209,6 +211,7 @@
             font-size: 2.8rem; 
             margin-bottom: 1rem; 
             background: linear-gradient(135deg, #27ae60, #2ecc71); 
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -249,7 +252,6 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Адаптивность для планшетов и телефонов */
         @media (max-width: 1024px) {
             .nav-links {
                 gap: 0.5rem;
@@ -361,7 +363,10 @@
         </nav>
     </header>
 
-    <!-- Остальной контент остается без изменений -->
+    <main>
+
+
+
     <section class="hero">
         <h1>Открой жанр своей мечты!</h1>
         <p style="font-size: 1.3rem; color: #5a6c7d; margin-bottom: 2rem;">Пройди мини-тест из 2 вопросов и узнай, какие книги зажгут твое воображение!</p>
@@ -416,11 +421,12 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 BookGenres.ru. Все права защищены. 
+        <p>&copy; 2026 BookGenres.ru. Все права защищены. 
         </p>
         <p>Создано с ❤️ для любителей книг</p>
     </footer>
 
+    </main>
     <script>
         let currentQuestion = 0;
         const quizData = [

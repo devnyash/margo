@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /*.txt$
-Disallow: /img/
 Disallow: /admin/
 Disallow: /*.log$
 Disallow: /_vti_*
@@ -15,5 +14,5 @@ User-agent: Googlebot
 Allow: /
 
 Host: bookgenres.ru
-Sitemap: https://bookgenres.ru/sitemap.xml
+Sitemap: https://margo-xi.vercel.app/sitemap.xml
 

@@ -6,7 +6,6 @@
     <title>О проекте KnIZHki — Всё о книгах</title>
     <link rel="shortcut icon" href="img/icon.webp">
     <style>
-        /* Базовые стили */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         header {
@@ -52,11 +51,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 2.6rem; /* Фиксированная высота для всех кнопок */
+            height: 2.6rem; 
             white-space: nowrap;
             user-select: none;
         }
-        /* Специально для кнопки Жанры - убираем дефолтные стили button */
         .genres-btn[type="button"] {
             appearance: none;
             -webkit-appearance: none;
@@ -121,7 +119,6 @@
             color: white;
         }
 
-        /* Общие стили */
         body {
             font-family: 'Georgia', serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -245,7 +242,6 @@
         }
         .cta-button:hover { background-color: #2980b9; }
 
-        /* АДАПТИВНОСТЬ ШАПКИ */
         @media (max-width: 1024px) {
             .nav-links { gap: 0.5rem; }
             .genres-btn {
@@ -279,7 +275,6 @@
                 min-width: auto;
                 border-radius: 0;
             }
-            /* Остальная адаптивность контента */
             .offer-section { flex-direction: column; text-align: center; }
             .hero-overlay h1 { font-size: 2.2rem; }
             main { padding: 0 1rem; margin: 1rem auto 4rem; }
@@ -331,7 +326,6 @@
 </header>
 
 <main>
-    <!-- БЛОК 1: Красивый баннер -->
     <section class="hero-banner">
         <div class="hero-overlay">
             <h1>О проекте KnIZHki</h1>
@@ -343,7 +337,6 @@
         KnIZHki — это онлайн-платформа для тех, кто хочет легко и интересно находить книги по жанрам. Мы помогаем сориентироваться в огромном мире литературы и выбрать именно то, что откликнется в вашем сердце.
     </p>
 
-    <!-- БЛОК 2: Что предлагаем + Изображение -->
     <section class="offer-section">
         <div class="offer-text">
             <h2>Что мы предлагаем</h2>
@@ -356,7 +349,6 @@
         <div class="offer-image"></div>
     </section>
 
-    <!-- БЛОК 3: Миссия с картинками -->
     <h2 style="text-align: center; margin-top: 4rem;">Наша миссия</h2>
     <div class="mission-grid">
         <div class="mission-card">

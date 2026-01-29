@@ -8,7 +8,6 @@
      <meta name="keywords" content="книги, польза книг, жанры книг, тест жанров, литература">
     <link rel="shortcut icon" href="img/icon.webp">
     <style>
-        /* Базовые стили */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         header {
@@ -54,11 +53,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 2.6rem; /* Фиксированная высота для всех кнопок */
+            height: 2.6rem; 
             white-space: nowrap;
             user-select: none;
         }
-        /* Специально для кнопки Жанры - убираем дефолтные стили button */
         .genres-btn[type="button"] {
             appearance: none;
             -webkit-appearance: none;
@@ -123,7 +121,6 @@
             color: white;
         }
 
-        /* Стили страницы */
         body {
             font-family: 'Georgia', serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -245,7 +242,6 @@
         }
         footer a { color: #3498db; text-decoration: none; }
 
-        /* АДАПТИВНОСТЬ ШАПКИ И КОНТЕНТА */
         @media (max-width: 1024px) {
             .nav-links { gap: 0.5rem; }
             .genres-btn {

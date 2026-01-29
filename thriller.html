@@ -7,8 +7,8 @@
 <meta name="description" content="Лучшие книги триллеров: интриги, погони, психологическое напряжение. Обложки, авторов, описания захватывающих триллеров." />
 <meta name="keywords" content="триллеры книги, книги триллеры, психологические триллеры, детективные триллеры, suspense" />
 <link rel="shortcut icon" href="img/icon.webp">
+<link rel="stylesheet" href="styles/style.css">
 <style>
-/* БАЗОВЫЕ СТИЛИ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 header {
@@ -54,11 +54,11 @@ nav {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 2.6rem; /* фиксированная высота */
+    height: 2.6rem; 
     white-space: nowrap;
     user-select: none;
 }
-/* убираем дефолтные стили у кнопки */
+
 .genres-btn[type="button"] {
     appearance: none;
     -webkit-appearance: none;
@@ -114,7 +114,6 @@ nav {
     color: white;
 }
 
-/* ОСНОВНЫЕ СТИЛИ */
 body {
     font-family: 'Georgia', serif;
     background: #fffaf0;
@@ -199,6 +198,12 @@ footer a {
 }
 footer a:hover {
     text-decoration: underline;
+}
+.cta-button {
+    background-color: #f59e0b !important;
+}
+.cta-button:hover {
+    background-color: #d97706 !important;
 }
 
 /* АДАПТИВНОСТЬ ШАПКИ */
@@ -345,6 +350,12 @@ footer a:hover {
         </div>
     </div>
 </section>
+
+<div class="cta-container">
+    <h1>Откройте для себя мир книг!</h1>
+    <p>Присоединяйтесь к нашему сообществу книголюбов и получайте рекомендации, рецензии и новости о лучших книгах!</p>
+    <a href="#subscribe" class="cta-button">Перейти в группу</a>
+</div>
 
 <footer>
     <p>&copy; 2026 BookGenres.ru. Все права защищены.</p>
